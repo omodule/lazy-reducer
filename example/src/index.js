@@ -1,7 +1,7 @@
-import 'babel-polyfill' // ES6 polyfill
+import 'babel-polyfill'; // ES6 polyfill
 import React from 'react';
-import {render} from 'react-dom';
-import { createStore, combineReducers, compose } from 'redux';
+import { render } from 'react-dom';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import syncReducer from './modules/syncCounter/reducers/index';
 import { attach, lazyReducerEnhencer } from 'lazy-reducer';
 import AppLayout from './AppLayout';
@@ -9,6 +9,7 @@ import syncCounterRoute from './modules/syncCounter/route';
 import lazyCounterRoute from './modules/lazyCounter/route';
 import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
+import createLogger from 'redux-logger';
 
 const syncReducers = {
     syncCounter: syncReducer
@@ -16,20 +17,20 @@ const syncReducers = {
 
 const store = createStore(
     combineReducers(syncReducers),
-    compose(lazyReducerEnhencer(syncReducers))
+    {},
+    compose(applyMiddleware(createLogger()), lazyReducerEnhencer(syncReducers))
 );
 
-window.store = store
+window.store = store;
 
 const routeAttachReducer = attach(lazyCounterRoute, store, cb => {
     import('./modules/lazyCounter/reducers/index').then(reducer => {
         console.log(reducer);
         cb({
-            lazy: reducer.default
+            lazyCounter: reducer.default
         });
     });
 });
-
 
 const rootRoute = {
     path: '/',

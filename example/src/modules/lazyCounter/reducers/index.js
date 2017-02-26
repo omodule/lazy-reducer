@@ -10,4 +10,7 @@ const lazyCounter = (state = 0, action) => {
     }
     return state
 }
+
+export const increase = dispatch => () => dispatch({type: INCREMENT})
+export const decrease = dispatch => () => dispatch({type: DECREMENT})
 export default lazyCounter
