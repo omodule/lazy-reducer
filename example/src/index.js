@@ -26,7 +26,7 @@ window.store = store;
 const routeAttachReducer = attach(lazyCounterRoute, store, cb => {
     import('./modules/lazyCounter/reducers/index').then(reducer => {
         console.log(reducer);
-        cb({
+        cb(null, {
             lazyCounter: reducer.default
         });
     });

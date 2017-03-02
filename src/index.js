@@ -35,15 +35,17 @@ export const attach = (route, store, getLazyReducer) => {
     if (typeof route.onEnter === 'function') {
         const realOnEnter = route.onEnter;
         const isSync = realOnEnter.length < 3;
+        let counter = 0;
         route.onEnter = (nextState, replace, callback) => {
-            const cb = lazyReducers => {
+            const cb = (error, lazyReducers) => {
+                if (error) {
+                    console.error(error);
+                }
                 store.addLazyReducers(lazyReducers);
                 store.replaceReducer(
-                    makeRootReducer(
-                        store.getSyncReducers(),
-                        store.getLazyReducers()
-                    )
+                    makeRootReducer(store.getSyncReducers(), store.getLazyReducers())
                 );
+                counter++;
 
                 if (isSync) {
                     realOnEnter(nextState, replace);
@@ -52,21 +54,37 @@ export const attach = (route, store, getLazyReducer) => {
                     realOnEnter(nextState, replace, callback);
                 }
             };
-            getLazyReducer(cb);
+
+            if (counter === 0) {
+                getLazyReducer(cb);
+            } else {
+                if (isSync) {
+                    realOnEnter(nextState, replace);
+                    callback();
+                } else {
+                    realOnEnter(nextState, replace, callback);
+                }
+            }
         };
     } else {
+        let counter = 0;
         route.onEnter = (nextState, replace, callback) => {
-            const cb = lazyReducers => {
+            const cb = (error, lazyReducers) => {
+                if (error) {
+                    console.error(error);
+                }
                 store.addLazyReducers(lazyReducers);
                 store.replaceReducer(
-                    makeRootReducer(
-                        store.getSyncReducers(),
-                        store.getLazyReducers()
-                    )
+                    makeRootReducer(store.getSyncReducers(), store.getLazyReducers())
                 );
+                counter++;
                 callback();
             };
-            getLazyReducer(cb);
+            if (counter === 0) {
+                getLazyReducer(cb);
+            } else {
+                callback();
+            }
         };
     }
 

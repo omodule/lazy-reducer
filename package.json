@@ -1,11 +1,13 @@
 {
   "name": "lazy-reducer",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "description": "lazy reducer",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "clean": "rimraf lib",
+    "prepublish": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,11 @@
     "babel-loader": "^6.3.2",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.1.8",
+    "rimraf": "^2.6.1",
     "webpack": "^2.2.1"
-  }
+  },
+  "files": [
+      "lib",
+      "src"
+  ]
 }
