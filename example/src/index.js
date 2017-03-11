@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import syncReducer from './modules/syncCounter/reducers/index';
-import { attach, lazyReducerEnhencer } from 'lazy-reducer';
+import { attach, lazyReducerEnhancer } from 'lazy-reducer';
 import AppLayout from './AppLayout';
 import syncCounterRoute from './modules/syncCounter/route';
 import lazyCounterRoute from './modules/lazyCounter/route';
@@ -18,10 +18,8 @@ const syncReducers = {
 const store = createStore(
     combineReducers(syncReducers),
     {},
-    compose(applyMiddleware(createLogger()), lazyReducerEnhencer(syncReducers))
+    compose(applyMiddleware(createLogger()), lazyReducerEnhancer(syncReducers))
 );
-
-window.store = store;
 
 const routeAttachReducer = attach(lazyCounterRoute, store, cb => {
     import('./modules/lazyCounter/reducers/index').then(reducer => {

@@ -7,7 +7,7 @@ const makeRootReducer = (syncReducers, lazyReducers) => {
     });
 };
 
-export const lazyReducerEnhencer = syncReducers => createStore => (
+export const lazyReducerEnhancer = syncReducers => createStore => (
     reducer,
     preloadedState,
     enhancer
