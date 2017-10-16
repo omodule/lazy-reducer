@@ -9,12 +9,64 @@ npm install --save lazy-reducer
 ```
 ## API
 
-#### `<LazyReducer />`
-
-#### `withLazyReducer`
-
+### Setup
 #### `lazyReducerEnhancer`
 redux enhancer
+```javascript
+import { lazyReducerEnhancer } from 'lazy-reducer';
+
+const rootReducerObj = {
+    nameA: reducerA,
+    nameB: reducerB
+};
+const store = createStore(combineReducers(rootReducerObj), {}, lazyReducerEnhancer(rootReducerObj));
+```
+
+### Usage
+#### `<LazyReducer />`
+```javascript
+import { LazyReducer } from 'lazy-reducer';
+
+<LazyReducer
+    reducer={{
+        key: someReducer
+    }}
+>
+    <AnyComponent />
+</LazyReducer>
+```
+
+#### `withLazyReducer`
+```javascript
+import { withLazyReducer } from 'lazy-reducer';
+
+class Comp extends Component {
+    render() {
+        <div>i am a Component wrapped by lazy reducer !</div>;
+    }
+}
+
+export default withLazyReducer({
+    name: someReducer
+})(Comp);
+```
+
+```javascript
+import { withLazyReducer } from 'lazy-reducer';
+
+@withLazyReducer({
+    name: someReducer
+})
+class Comp extends Component {
+    render() {
+        <div>i am a Component wrapped by lazy reducer !</div>;
+    }
+}
+
+export default Comp;
+```
+
+
 
 ## example
 [example](./example)
