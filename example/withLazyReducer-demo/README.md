@@ -1,0 +1,4 @@
+# `withLazyReducer` demo
+```
+npm start
+```
