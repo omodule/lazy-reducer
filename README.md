@@ -7,21 +7,12 @@ npm install --save lazy-reducer
 ```
 ## API
 
-#### `lazyReducerEnhancer`
-
 #### `<LazyReducer />`
 
 #### `withLazyReducer`
 
-```js
-callback(err, {
-    [key]: asyncReducer
-});
-```
-
-#### `lazyReducerEnhancer(syncReducer)`
+#### `lazyReducerEnhancer`
 redux enhancer
-
 
 ## example
 [example](./example)
