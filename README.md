@@ -29,7 +29,7 @@ import { LazyReducer } from 'lazy-reducer';
 
 <LazyReducer
     reducer={{
-        key: someReducer
+        nameX: someReducer
     }}
 >
     <AnyComponent />
@@ -47,7 +47,7 @@ class Comp extends Component {
 }
 
 export default withLazyReducer({
-    name: someReducer
+    nameX: someReducer
 })(Comp);
 ```
 
@@ -55,7 +55,7 @@ export default withLazyReducer({
 import { withLazyReducer } from 'lazy-reducer';
 
 @withLazyReducer({
-    name: someReducer
+    nameX: someReducer
 })
 class Comp extends Component {
     render() {
