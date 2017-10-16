@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wuchangming/lazy-reducer.git"
+    "url": "git+https://github.com/KeyFE/lazy-reducer.git"
   },
   "keywords": [
     "lazy",
@@ -21,9 +21,9 @@
   "author": "wuchangming",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wuchangming/lazy-reducer/issues"
+    "url": "https://github.com/KeyFE/lazy-reducer/issues"
   },
-  "homepage": "https://github.com/wuchangming/lazy-reducer#readme",
+  "homepage": "https://github.com/KeyFE/lazy-reducer#readme",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
@@ -33,7 +33,14 @@
     "webpack": "^2.2.1"
   },
   "files": [
-      "lib",
-      "src"
-  ]
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "redux": "^3.7.2"
+  }
 }

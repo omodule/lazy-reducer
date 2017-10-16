@@ -1,8 +1,8 @@
-const INCREMENT = 'lazyCounter/INCREAMENT'
-const DECREMENT = 'lazyCounter/DECREMENT'
+const INCREMENT = 'syncCounter/INCREAMENT'
+const DECREMENT = 'syncCounter/DECREMENT'
 
 
-const lazyCounter = (state = 0, action) => {
+const syncCounterReducer = (state = 0, action) => {
     if (action.type === INCREMENT) {
         return ++state
     } else if (action.type === DECREMENT) {
@@ -13,4 +13,5 @@ const lazyCounter = (state = 0, action) => {
 
 export const increase = dispatch => () => dispatch({type: INCREMENT})
 export const decrease = dispatch => () => dispatch({type: DECREMENT})
-export default lazyCounter
+
+export default syncCounterReducer
