@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LazyCounter from './modules/lazyCounter/LazyCounter';
 import SyncCounter from './modules/syncCounter/SyncCounter';
 import { connect } from 'react-redux';
-import { LazyReducer } from '../../../src';
+import { LazyReducer } from 'lazy-reducer';
 import lazyCounterReducer from './modules/lazyCounter/reducer';
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
                         fontWeight: 'bold'
                     }}
                 >
-                    LazyReducer demo!
+                    {'<LazyReducer /> demo!'}
                 </span>
                 <div style={{ margin: '12px' }}>
                     <input
