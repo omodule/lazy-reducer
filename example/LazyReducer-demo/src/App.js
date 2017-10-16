@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LazyCounter from './modules/lazyCounter/LazyCounter';
 import SyncCounter from './modules/syncCounter/SyncCounter';
 import { connect } from 'react-redux';
-import LazyReducer from '../../../src/LazyReducer';
+import { LazyReducer } from '../../../src';
 import lazyCounterReducer from './modules/lazyCounter/reducer';
 
 class App extends Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import withLazyReducer from '../../../../../src/withLazyReducer';
+import { withLazyReducer } from '../../../../../src';
 import lazyCounterReducer, { increase, decrease } from './reducer';
 
 const LazyCounter = props => {

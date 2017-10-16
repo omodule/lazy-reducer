@@ -5,13 +5,9 @@ import { createStore, combineReducers } from 'redux';
 import rootReducerObj from './rootReducerObj.js';
 import App from './App';
 import { Provider } from 'react-redux';
-import lazyReducerEnhancer from '../../../src/lazyReducerEnhancer'
+import { lazyReducerEnhancer } from '../../../src';
 
-const store = createStore(
-    combineReducers(rootReducerObj),
-    {},
-    lazyReducerEnhancer(rootReducerObj)
-);
+const store = createStore(combineReducers(rootReducerObj), {}, lazyReducerEnhancer(rootReducerObj));
 
 render(
     <Provider store={store}>

@@ -1,7 +1,7 @@
 'use strict';
 
-var webpack = require('webpack')
-var path = require('path')
+var webpack = require('webpack');
+var path = require('path');
 
 var config = {
     entry: './src/index.js',
@@ -10,7 +10,7 @@ var config = {
             {
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
-                exclude: /node_modules/,
+                exclude: /node_modules/
             }
         ]
     },
@@ -27,17 +27,7 @@ var config = {
         }),
         new webpack.optimize.UglifyJsPlugin()
     ],
-    externals: [
-        {
-            redux: {
-                root: 'redux',
-                commonjs2: 'redux',
-                commonjs: 'redux',
-                amd: 'redux'
-            }
-        }
-    ]
+    externals: ['react', 'redux', 'prop-types']
 };
 
-
-module.exports = config
+module.exports = config;
