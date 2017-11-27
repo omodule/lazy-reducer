@@ -17,8 +17,8 @@ var config = {
     output: {
         library: 'lazyReducer',
         libraryTarget: 'umd',
-        path: path.resolve(__dirname, './lib'),
-        filename: 'index.js'
+        path: path.resolve(__dirname, './dist'),
+        filename: 'lazy-reducer.min.js'
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),

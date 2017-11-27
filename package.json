@@ -1,35 +1,45 @@
 {
-    "name": "lazy-reducer",
-    "version": "0.2.0",
-    "description": "lazy reducer",
-    "main": "lib/index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack",
-        "clean": "rimraf lib",
-        "prepublish": "npm run clean && npm run build"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/KeyFE/lazy-reducer.git"
-    },
-    "keywords": ["lazy", "load", "reducer"],
-    "author": "wuchangming",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/KeyFE/lazy-reducer/issues"
-    },
-    "homepage": "https://github.com/KeyFE/lazy-reducer#readme",
-    "devDependencies": {
-        "babel-core": "^6.23.1",
-        "babel-loader": "^6.3.2",
-        "babel-preset-env": "^1.1.8",
-        "rimraf": "^2.6.1",
-        "webpack": "^2.2.1",
-        "lodash": "^4.17.4",
-        "prop-types": "^15.6.0",
-        "react": "^16.0.0",
-        "redux": "^3.7.2"
-    },
-    "files": ["lib", "src"]
+  "name": "lazy-reducer",
+  "version": "0.2.0",
+  "description": "lazy reducer",
+  "main": "lib/index.js",
+  "scripts": {
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:umd": "webpack",
+    "build": "npm run build:commonjs && npm run build:umd",
+    "clean": "rimraf lib dist",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeyFE/lazy-reducer.git"
+  },
+  "keywords": [
+    "lazy",
+    "load",
+    "reducer"
+  ],
+  "author": "wuchangming",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KeyFE/lazy-reducer/issues"
+  },
+  "homepage": "https://github.com/KeyFE/lazy-reducer#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-env": "^1.1.8",
+    "cross-env": "^5.1.1",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "redux": "^3.7.2",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.2.1"
+  },
+  "files": [
+    "lib",
+    "src"
+  ]
 }
