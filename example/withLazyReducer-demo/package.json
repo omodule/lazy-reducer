@@ -23,7 +23,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.2",
-    "lazy-reducer": "^0.2.0",
+    "lazy-reducer": "^0.3.0",
     "rimraf": "^2.6.2",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.20.0"
