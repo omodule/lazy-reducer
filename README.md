@@ -69,4 +69,4 @@ export default Comp;
 
 
 ## example
-[example](./example)
+[examples](./examples)
