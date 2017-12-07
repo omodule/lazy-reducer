@@ -28,8 +28,9 @@ const store = createStore(combineReducers(rootReducerObj), {}, lazyReducerEnhanc
 import { LazyReducer } from 'lazy-reducer';
 
 <LazyReducer
-    reducer={{
-        nameX: someReducer
+    reducers={{
+        nameA: someReducer1,
+        nameB: someReducer2
     }}
 >
     <AnyComponent />
@@ -47,7 +48,8 @@ class Comp extends Component {
 }
 
 export default withLazyReducer({
-    nameX: someReducer
+    nameA: someReducer1,
+    nameB: someReducer2
 })(Comp);
 ```
 
@@ -55,7 +57,8 @@ export default withLazyReducer({
 import { withLazyReducer } from 'lazy-reducer';
 
 @withLazyReducer({
-    nameX: someReducer
+    nameA: someReducer1,
+    nameB: someReducer2
 })
 class Comp extends Component {
     render() {
