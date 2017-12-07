@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withLazyReducer 1`] = `
+<div>
+  DelayContainer 
+  {"store":{"a":"a","b":"x"}}
+</div>
+`;
+
+exports[`withLazyReducer 2`] = `
+<div>
+  InnerComponent 
+  {"store":{"a":"a","b":"x","nameX":null}}
+</div>
+`;
