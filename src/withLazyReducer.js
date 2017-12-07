@@ -6,8 +6,7 @@ import { combineReducers } from 'redux';
 /**
  * lazyReducer structure:
  * {
- *    namespace: 'myNamespace',
- *    reducer: function(state, action) {
+ *    'myNamespace': function(state, action) {
  *          return state
  *    }
  * }

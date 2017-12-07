@@ -8,7 +8,9 @@
     "build:umd": "webpack",
     "build": "npm run build:commonjs && npm run build:umd",
     "clean": "rimraf lib dist",
-    "prepublish": "npm run clean && npm run build"
+    "rebuild": "npm run clean && npm run build",
+    "prepublishOnly": "npm run clean && npm run rebuild",
+    "test": "npm run rebuild && jest"
   },
   "repository": {
     "type": "git",
@@ -29,11 +31,17 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.1.8",
+    "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.1",
+    "jest": "^21.2.1",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "rimraf": "^2.6.1",
     "webpack": "^2.2.1"
