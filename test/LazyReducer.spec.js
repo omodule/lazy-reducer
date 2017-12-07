@@ -35,7 +35,7 @@ class DelayContainer extends Component {
         if (this.state.show) {
             return (
                 <LazyReducer
-                    reducer={{
+                    reducers={{
                         nameX: function(state = null, action) {
                             return state
                         }

@@ -8,13 +8,9 @@ class LazyReducer extends Component {
         super(props, context)
         const store = context.store
         if (!store) {
-            throw new Error(
-                `Could not find "${storeKey}" in either the context or props of ` +
-                    `"${displayName}". Either wrap the root component in a <Provider>, ` +
-                    `or explicitly pass "${storeKey}" as a prop to "${displayName}".`
-            )
+            throw new Error(`Could not find "store".`)
         }
-        store.addLazyReducers(this.props.reducer)
+        store.addLazyReducers(this.props.reducers)
         store.replaceReducer(
             combineReducers({
                 ...store.getSyncReducers(),
@@ -27,7 +23,7 @@ class LazyReducer extends Component {
         const { children } = this.props
         // return React.cloneElement(children);
         const passthrough = { ...this.props }
-        delete passthrough.reducer
+        delete passthrough.reducers
         delete passthrough.children
 
         if (children) {
@@ -41,7 +37,7 @@ LazyReducer.contextTypes = {
     store: storeShape
 }
 LazyReducer.propTypes = {
-    reducer: PropTypes.object.isRequired
+    reducers: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired
 }
 
 export default LazyReducer
