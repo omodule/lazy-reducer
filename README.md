@@ -35,22 +35,44 @@ import { LazyReducer } from 'lazy-reducer';
 >
     <AnyComponent />
 </LazyReducer>
+
+<LazyReducer
+    reducers={done => {
+        setTimeout(() => {
+            done({
+                nameA: someReducer1,
+                nameB: someReducer2
+            })
+        }, 1000)
+    }}
+>
+    <AnyComponent />
+</LazyReducer>
+
+
 ```
 
 #### `withLazyReducer`
 ```javascript
-import { withLazyReducer } from 'lazy-reducer';
+import { withLazyReducer } from 'lazy-reducer'
 
 class Comp extends Component {
     render() {
-        <div>i am a Component wrapped by lazy reducer !</div>;
+        <div>i am a Component wrapped by lazy reducer !</div>
     }
 }
 
 export default withLazyReducer({
     nameA: someReducer1,
     nameB: someReducer2
-})(Comp);
+})(Comp)
+
+export default withLazyReducer(done => {
+    done({
+        nameA: someReducer1,
+        nameB: someReducer2
+    })
+})(Comp)
 ```
 
 ```javascript
@@ -66,7 +88,18 @@ class Comp extends Component {
     }
 }
 
-export default Comp;
+@withLazyReducer(done => {
+    done({
+        nameA: someReducer1,
+        nameB: someReducer2
+    })
+})
+class Comp extends Component {
+    render() {
+        ;<div>i am a Component wrapped by lazy reducer !</div>
+    }
+}
+
 ```
 
 
