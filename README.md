@@ -36,6 +36,7 @@ import { LazyReducer } from 'lazy-reducer';
     <AnyComponent />
 </LazyReducer>
 
+// or
 <LazyReducer
     reducers={done => {
         setTimeout(() => {
@@ -66,7 +67,7 @@ export default withLazyReducer({
     nameA: someReducer1,
     nameB: someReducer2
 })(Comp)
-
+// or
 export default withLazyReducer(done => {
     done({
         nameA: someReducer1,
@@ -87,7 +88,7 @@ class Comp extends Component {
         <div>i am a Component wrapped by lazy reducer !</div>;
     }
 }
-
+// or
 @withLazyReducer(done => {
     done({
         nameA: someReducer1,
@@ -96,7 +97,7 @@ class Comp extends Component {
 })
 class Comp extends Component {
     render() {
-        ;<div>i am a Component wrapped by lazy reducer !</div>
+        <div>i am a Component wrapped by lazy reducer !</div>
     }
 }
 
