@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createElement, isValidElement } from 'react'
 import storeShape from './storeShape'
 import PropTypes from 'prop-types'
 import { combineReducers } from 'redux'
@@ -10,24 +10,47 @@ class LazyReducer extends Component {
         if (!store) {
             throw new Error(`Could not find "store".`)
         }
-        store.addLazyReducers(this.props.reducers)
-        store.replaceReducer(
+        this.store = store
+
+        if (typeof props.reducers === 'function') {
+            this.state = { display: false }
+            const getReducers = props.reducers
+            getReducers(reducers => {
+                this.addLazyReducers(reducers)
+                this.setState({
+                    display: true
+                })
+            })
+        } else {
+            this.addLazyReducers(props.reducers)
+            this.state = { display: true }
+        }
+    }
+    addLazyReducers(reducers) {
+        this.store.addLazyReducers(reducers)
+        this.store.replaceReducer(
             combineReducers({
-                ...store.getSyncReducers(),
-                ...store.getLazyReducers()
+                ...this.store.getSyncReducers(),
+                ...this.store.getLazyReducers()
             })
         )
     }
 
     render() {
         const { children } = this.props
+        const { display } = this.state
         // return React.cloneElement(children);
         const passthrough = { ...this.props }
         delete passthrough.reducers
         delete passthrough.children
 
-        if (children) {
-            return <children.type {...passthrough} />
+        if (children && display) {
+            if (typeof children.type === 'function') {
+                // react component
+                return <children.type {...children.props} {...passthrough} />
+            } else {
+                return <children.type {...children.props} />
+            }
         } else {
             return null
         }
