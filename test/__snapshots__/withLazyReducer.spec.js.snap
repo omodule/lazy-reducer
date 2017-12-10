@@ -2,14 +2,31 @@
 
 exports[`withLazyReducer 1`] = `
 <div>
-  DelayContainer 
-  {"store":{"a":"a","b":"x"}}
+  <div>
+    DelayContainer 
+    {"store":{"a":"a","b":"x"}}
+  </div>
 </div>
 `;
 
 exports[`withLazyReducer 2`] = `
 <div>
-  InnerComponent 
-  {"store":{"a":"a","b":"x","nameX":null}}
+  <div>
+    InnerComponent 
+    {"store":{"a":"a","b":"x","nameX":null}}
+  </div>
+</div>
+`;
+
+exports[`withLazyReducer 3`] = `
+<div>
+  <div>
+    InnerComponent 
+    {"store":{"a":"a","b":"x","nameX":null,"reducerWithFun":"reducerWithFun"}}
+  </div>
+  <div>
+    InnerComponent 
+    {"store":{"a":"a","b":"x","nameX":null,"reducerWithFun":"reducerWithFun"}}
+  </div>
 </div>
 `;

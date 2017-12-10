@@ -25,6 +25,26 @@ class InnerComponent extends Component {
         store: state
     }
 })
+@withLazyReducer(done => {
+    setTimeout(() => {
+        done({
+            reducerWithFun: (state = 'reducerWithFun', action) => {
+                return state
+            }
+        })
+    }, 300)
+})
+class InnerComponentWithFunc extends Component {
+    render() {
+        return <div>InnerComponent {JSON.stringify(this.props)}</div>
+    }
+}
+
+@connect(state => {
+    return {
+        store: state
+    }
+})
 class DelayContainer extends Component {
     constructor(props) {
         super(props)
@@ -33,7 +53,7 @@ class DelayContainer extends Component {
             this.setState({
                 show: true
             })
-        }, 200)
+        }, 100)
     }
 
     render() {
@@ -63,11 +83,17 @@ test('withLazyReducer', async () => {
     const store = createStore(combineReducers(syncReducers), {}, lazyReducerEnhancer(syncReducers))
     const App = (
         <Provider store={store}>
-            <DelayContainer />
+            <div>
+                <DelayContainer />
+                <InnerComponentWithFunc />
+            </div>
         </Provider>
     )
     const app = renderer.create(App)
     expect(app.toJSON()).toMatchSnapshot()
-    await waitFor(300)
+    await waitFor(200)
     expect(app.toJSON()).toMatchSnapshot()
+    await waitFor(400)
+    expect(app.toJSON()).toMatchSnapshot()
+    
 })

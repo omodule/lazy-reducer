@@ -8,17 +8,6 @@ function getDisplayName(WrappedComponent) {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component'
 }
 
-/**
- * reducers structure:
- * {
- *    'myNamespace': function(state, action) {
- *          return state
- *    }
- * }
- *
- * @param  {String} reducers     [description]
- * @return {[type]}                    [description]
- */
 const withLazyReducer = reducers => WrappedComponent => {
     const displayName = `withLazyReducer(${getDisplayName(WrappedComponent)})`
 
@@ -29,20 +18,33 @@ const withLazyReducer = reducers => WrappedComponent => {
             if (!store) {
                 throw new Error(`Could not find "store".`)
             }
-            if (isPlainObject(reducers)) {
-                store.addLazyReducers(reducers)
-                store.replaceReducer(
-                    combineReducers({
-                        ...store.getSyncReducers(),
-                        ...store.getLazyReducers()
+            this.store = store
+
+            if (typeof reducers === 'function') {
+                this.state = { display: false }
+                const getReducers = reducers
+                getReducers(reducers => {
+                    this.addLazyReducers(reducers)
+                    this.setState({
+                        display: true
                     })
-                )
+                })
             } else {
-                throw new Error('You must pass a `planObject` to the function `withLazyReducer`')
+                this.addLazyReducers(reducers)
+                this.state = { display: true }
             }
         }
+        addLazyReducers(reducers) {
+            this.store.addLazyReducers(reducers)
+            this.store.replaceReducer(
+                combineReducers({
+                    ...this.store.getSyncReducers(),
+                    ...this.store.getLazyReducers()
+                })
+            )
+        }
         render() {
-            return <WrappedComponent {...this.props} />
+            return this.state.display ? <WrappedComponent {...this.props} /> : null
         }
     }
     ComponentWithLazyReducer.contextTypes = {
