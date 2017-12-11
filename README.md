@@ -5,7 +5,7 @@ Dynamically load reducer.
 
 ## Install
 ```
-npm install --save lazy-reducer
+npm install --save-dev lazy-reducer
 ```
 ## API
 
