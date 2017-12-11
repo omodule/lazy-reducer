@@ -23,7 +23,7 @@ const store = createStore(combineReducers(rootReducerObj), {}, lazyReducerEnhanc
 ```
 
 ### Usage
-#### `<LazyReducer />`
+#### `<LazyReducer reducers/>`
 ```javascript
 import { LazyReducer } from 'lazy-reducer';
 
@@ -35,8 +35,9 @@ import { LazyReducer } from 'lazy-reducer';
 >
     <AnyComponent />
 </LazyReducer>
+```
 
-// or
+```javascript
 <LazyReducer
     reducers={done => {
         setTimeout(() => {
@@ -53,7 +54,8 @@ import { LazyReducer } from 'lazy-reducer';
 
 ```
 
-#### `withLazyReducer`
+#### `withLazyReducer(reducers)`
+###### HOC
 ```javascript
 import { withLazyReducer } from 'lazy-reducer'
 
@@ -67,15 +69,20 @@ export default withLazyReducer({
     nameA: someReducer1,
     nameB: someReducer2
 })(Comp)
-// or
+```
+
+```javascript
 export default withLazyReducer(done => {
-    done({
-        nameA: someReducer1,
-        nameB: someReducer2
-    })
+    setTimeout(() => {
+        done({
+            nameA: someReducer1,
+            nameB: someReducer2
+        })
+    }, 1000)
 })(Comp)
 ```
 
+###### @Decorator
 ```javascript
 import { withLazyReducer } from 'lazy-reducer';
 
@@ -88,12 +95,16 @@ class Comp extends Component {
         <div>i am a Component wrapped by lazy reducer !</div>;
     }
 }
-// or
+```
+
+```javascript
 @withLazyReducer(done => {
-    done({
-        nameA: someReducer1,
-        nameB: someReducer2
-    })
+    setTimeout(() => {
+        done({
+            nameA: someReducer1,
+            nameB: someReducer2
+        })
+    }, 1000)
 })
 class Comp extends Component {
     render() {
