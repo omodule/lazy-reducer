@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import LazyCounter from './modules/lazyCounter/LazyCounter';
-import SyncCounter from './modules/syncCounter/SyncCounter';
-import { connect } from 'react-redux';
-import { LazyReducer } from 'lazy-reducer';
-import lazyCounterReducer from './modules/lazyCounter/reducer';
+import React, { Component } from 'react'
+import LazyCounter from './modules/lazyCounter/LazyCounter'
+import SyncCounter from './modules/syncCounter/SyncCounter'
+import { connect } from 'react-redux'
+import { LazyReducer } from 'lazy-reducer'
+import lazyCounterReducer from './modules/lazyCounter/reducer'
 
 class App extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             displayLazyCounter: false
-        };
+        }
     }
     render() {
         return (
@@ -30,7 +30,7 @@ class App extends Component {
                         onClick={() => {
                             this.setState({
                                 displayLazyCounter: true
-                            });
+                            })
                         }}
                         style={{ backgroundColor: '#f0ffff' }}
                     />
@@ -38,7 +38,7 @@ class App extends Component {
                         type="button"
                         value="Refresh"
                         onClick={() => {
-                            window.location.reload();
+                            window.location.reload()
                         }}
                         style={{ backgroundColor: '#f0ffff' }}
                     />
@@ -47,8 +47,12 @@ class App extends Component {
 
                 {this.state.displayLazyCounter ? (
                     <LazyReducer
-                        reducer={{
-                            lazyCounter: lazyCounterReducer
+                        reducers={done => {
+                            setTimeout(() => {
+                                done({
+                                    lazyCounter: lazyCounterReducer
+                                })
+                            }, 1000)
                         }}
                     >
                         <LazyCounter />
@@ -63,14 +67,14 @@ class App extends Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 
 const mapStateToProps = state => {
     return {
         allState: state
-    };
-};
+    }
+}
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, null)(App)
