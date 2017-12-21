@@ -3,7 +3,21 @@ import LazyCounter from './modules/lazyCounter/LazyCounter'
 import SyncCounter from './modules/syncCounter/SyncCounter'
 import { connect } from 'react-redux'
 import { LazyReducer } from 'lazy-reducer'
-import lazyCounterReducer from './modules/lazyCounter/reducer'
+
+// LazyReducer 用法 ！
+const LazyReducerContainer = (
+    <LazyReducer
+        reducers={done => {
+            import('./modules/lazyCounter/reducer').then(reducer => {
+                done({
+                    lazyCounter: reducer.default
+                })
+            })
+        }}
+    >
+        <LazyCounter />
+    </LazyReducer>
+)
 
 class App extends Component {
     constructor(props) {
@@ -11,6 +25,9 @@ class App extends Component {
         this.state = {
             displayLazyCounter: false
         }
+    }
+    displayLazyCounter () {
+
     }
     render() {
         return (
@@ -45,19 +62,7 @@ class App extends Component {
                 </div>
                 <SyncCounter />
 
-                {this.state.displayLazyCounter ? (
-                    <LazyReducer
-                        reducers={done => {
-                            setTimeout(() => {
-                                done({
-                                    lazyCounter: lazyCounterReducer
-                                })
-                            }, 1000)
-                        }}
-                    >
-                        <LazyCounter />
-                    </LazyReducer>
-                ) : null}
+                {this.state.displayLazyCounter ? LazyReducerContainer : null}
                 <div style={{ backgroundColor: 'rgb(245, 245, 242)', margin: '12px' }}>
                     All state in redux store:
                     <div>

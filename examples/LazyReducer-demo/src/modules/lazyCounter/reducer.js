@@ -1,6 +1,4 @@
-const INCREMENT = 'lazyCounter/INCREAMENT'
-const DECREMENT = 'lazyCounter/DECREMENT'
-
+import { INCREMENT, DECREMENT } from './reducerTypes'
 
 const lazyCounterReducer = (state = 0, action) => {
     if (action.type === INCREMENT) {
@@ -11,6 +9,4 @@ const lazyCounterReducer = (state = 0, action) => {
     return state
 }
 
-export const increase = dispatch => () => dispatch({type: INCREMENT})
-export const decrease = dispatch => () => dispatch({type: DECREMENT})
 export default lazyCounterReducer
