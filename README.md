@@ -11,10 +11,10 @@ npm install --save-dev lazy-reducer
 ```
 ## API
 
-#### `lazyReducerEnhancer`
+#### 配置 `lazyReducerEnhancer`
 
 使用 `lazy-reducer` 你**唯一**需要做的：添加一个 store enhencer 。  
-** 注：lazyReducerEnhancer 接受的参数是一个reducers的对象，不是 combineReducers(reducers) 后的 reducer 方法。**
+** 注 **：lazyReducerEnhancer 接受的参数是一个reducers的对象，不是 combineReducers(reducers) 后的 reducer 方法。
 
 ```javascript
 import { lazyReducerEnhancer } from 'lazy-reducer';
@@ -26,7 +26,7 @@ const rootReducerObj = {
 const store = createStore(combineReducers(rootReducerObj), {}, lazyReducerEnhancer(rootReducerObj));
 ```
 
-#### 容器组件方式 `<LazyReducer reducers/>`
+#### 容器组件 `<LazyReducer reducers/>`
 
 内联在 `LazyReducer` 中的子组件，只有当 `reducers` 被注册到 redux 中才会被渲染。
 
@@ -46,7 +46,7 @@ import { LazyReducer } from 'lazy-reducer';
 </LazyReducer>
 ```
 
-#### 高级组件方式 `withLazyReducer(reducers)`
+#### 高级组件 `withLazyReducer(reducers)`
 
 被 `withLazyReducer` 高阶组件嵌套的组件，只有当 `reducers` 被注册到 redux 中才会被渲染。
 
@@ -67,7 +67,7 @@ export default withLazyReducer(done => {
     })
 })(Comp)
 ```
-#### 高级组件的@注解方式 `withLazyReducer(reducers)`
+#### 高级组件的@注解方式 `@withLazyReducer(reducers)`
 
 ```javascript
 @withLazyReducer(done => {
