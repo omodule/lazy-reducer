@@ -39,3 +39,4 @@ jspm_packages
 #custom
 lib
 dist
+package-lock.json
