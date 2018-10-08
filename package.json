@@ -1,6 +1,6 @@
 {
   "name": "lazy-reducer",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "lazy reducer",
   "main": "lib/index.js",
   "scripts": {
@@ -37,7 +37,6 @@
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.1",
     "jest": "^21.2.1",
-    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -50,5 +49,9 @@
     "lib",
     "src",
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "hoist-non-react-statics": "^3.0.1"
+  }
 }

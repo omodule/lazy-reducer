@@ -1,8 +1,8 @@
-import { Component, createElement } from 'react'
+import React, { Component, createElement } from 'react'
 import storeShape from './storeShape'
 import isPlainObject from 'lodash/isPlainObject'
 import { combineReducers } from 'redux'
-import React from 'react'
+import hoistNonReactStatic from 'hoist-non-react-statics'
 
 function getDisplayName(WrappedComponent) {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component'
@@ -51,6 +51,7 @@ const withLazyReducer = reducers => WrappedComponent => {
         store: storeShape
     }
     ComponentWithLazyReducer.displayName = displayName
+    hoistNonReactStatic(ComponentWithLazyReducer, WrappedComponent)
     return ComponentWithLazyReducer
 }
 
